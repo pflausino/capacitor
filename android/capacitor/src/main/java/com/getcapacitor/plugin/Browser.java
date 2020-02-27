@@ -36,7 +36,7 @@ public class Browser extends Plugin {
   private boolean fireFinished = false;
 
   @PluginMethod()
-  public void open(PluginCall call) {
+   public void open(PluginCall call) {
     String url = call.getString("url");
     String toolbarColor = call.getString("toolbarColor");
 
@@ -49,10 +49,14 @@ public class Browser extends Plugin {
       call.error("URL must not be empty");
       return;
     }
-
+ 
     CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(getCustomTabsSession());
 
-    builder.addDefaultShareMenuItem();
+    //builder.addDefaultShareMenuItem();
+    builder.enableUrlBarHiding();
+
+    builder.setShowTitle(true);
+
 
     if (toolbarColor != null) {
       try {
@@ -72,7 +76,6 @@ public class Browser extends Plugin {
       call.error(ex.getLocalizedMessage());
     }
   }
-
   @PluginMethod()
   public void close(PluginCall call) {
     call.unimplemented();
