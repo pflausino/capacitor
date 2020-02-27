@@ -24,18 +24,18 @@ public class CAPBrowserPlugin : CAPPlugin, SFSafariViewControllerDelegate {
         self.vc!.delegate = self
         let presentationStyle = call.getString("presentationStyle")
         if presentationStyle != nil && presentationStyle == "popover" {
-          self.vc!.modalPresentationStyle = .popover
+          self.vc!.modalPresentationStyle = .overCurrentContext
           self.setCenteredPopover(self.vc)
         } else {
-          self.vc!.modalPresentationStyle = .fullScreen
+          self.vc!.modalPresentationStyle = .pageSheet
         }
 
         if toolbarColor != nil {
           self.vc!.preferredBarTintColor = UIColor(fromHex: toolbarColor!)
         }
-
+        self.vc!.navigationController?.navigationBar.tintColor = UIColor.white
         self.bridge.viewController.present(self.vc!, animated: true, completion: {
-          call.success()
+            call.success()
         })
       }
     } else {
@@ -67,4 +67,3 @@ public class CAPBrowserPlugin : CAPPlugin, SFSafariViewControllerDelegate {
     self.notifyListeners("browserPageLoaded", data: [:])
   }
 }
-
