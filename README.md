@@ -35,3 +35,5 @@ Please read the [Contributing](.github/CONTRIBUTING.md) guide for more informati
 
 [circle-badge]: https://circleci.com/gh/ionic-team/capacitor.svg?style=shield
 [circle-badge-url]: https://circleci.com/gh/ionic-team/capacitor
+
+CHANGE By PFlausino
